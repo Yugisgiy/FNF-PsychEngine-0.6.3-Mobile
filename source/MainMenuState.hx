@@ -36,10 +36,11 @@ class MainMenuState extends MusicBeatState
 		'story_mode',
 		'freeplay',
 		#if MODS_ALLOWED 'mods', #end
-		#if ACHIEVEMENTS_ALLOWED 'awards', #end
-		'credits',
-		#if !switch 'donate', #end
+		//#if ACHIEVEMENTS_ALLOWED 'awards', #end
+		//'credits',
+		//#if !switch 'donate', #end
 		'options'
+		'Gallery'
 	];
 
 	var magenta:FlxSprite;
@@ -251,6 +252,8 @@ class MainMenuState extends MusicBeatState
 										MusicBeatState.switchState(new CreditsState());
 									case 'options':
 										LoadingState.loadAndSwitchState(new options.OptionsState());
+									case 'Gallery':
+										MusicBeatState.switchState(new GalleryState());
 								}
 							});
 						}
