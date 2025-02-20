@@ -46,7 +46,7 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
-	var backdrop:FlxBackdrop;
+	var backdrop:FlxSprite;
 
 	override function create()
 	{
@@ -55,7 +55,7 @@ class MainMenuState extends MusicBeatState
 		#end
 		WeekData.loadTheFirstEnabledMod();
 
-		#if DISCORD_ALLOWED
+		#if DISCORD_ALLOWE
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
