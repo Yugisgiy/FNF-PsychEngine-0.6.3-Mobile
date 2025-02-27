@@ -194,7 +194,8 @@ class ChangedMainMenuState extends MusicBeatState
 		
 
 		// NG.core.calls.event.logEvent('swag').send();
-		addTouchPad("UP_DOWN", "A_B");
+
+		addTouchPad("UP_DOWN", "A_B_E");
 
 		super.create();
 	}
