@@ -194,6 +194,8 @@ class ChangedMainMenuState extends MusicBeatState
 		
 
 		// NG.core.calls.event.logEvent('swag').send();
+		addTouchPad("UP_DOWN", "A_B");
+
 		super.create();
 	}
 
@@ -247,7 +249,7 @@ class ChangedMainMenuState extends MusicBeatState
 				case 'NEW LIFE':
 					MusicBeatState.switchState(new StoryMenuState());
 				case 'OLD MEMORIES':
-					MusicBeatState.switchState(new ChangedFreeplayState());
+					MusicBeatState.switchState(new FreeplayState());
 				case 'OPTIONS':
 					LoadingState.loadAndSwitchState(new options.OptionsState());
 				case 'CREDITS':
