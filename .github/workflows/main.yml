@@ -13,11 +13,6 @@ jobs:
             buildArgs: windows
             artifactName: windowsBuild-x86_64
             artifactPath: export\release\windows\bin\*
-          - name: Windows ARM64
-            os: windows-2022
-            buildArgs: "windows -arm64 -D HXCPP_ARM64"
-            artifactName: windowsBuild-arm64
-            artifactPath: export\release\windows\bin\*
           - name: Linux
             os: ubuntu-22.04
             buildArgs: linux
@@ -38,11 +33,6 @@ jobs:
             buildArgs: "android -ONLY_ARMV7"
             artifactName: androidBuild
             artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
-          - name: iOS
-            os: macos-14
-            buildArgs: "ios -nosign"
-            artifactName: iOSBuild
-            artifactPath: "export/release/ios/build/Release-iphoneos/*.ipa"
     uses: ./.github/workflows/build.yml
     with:
         name: ${{ matrix.name }}
