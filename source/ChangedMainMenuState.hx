@@ -249,7 +249,7 @@ class ChangedMainMenuState extends MusicBeatState
 				case 'OLD MEMORIES':
 					MusicBeatState.switchState(new ChangedFreeplayState());
 				case 'OPTIONS':
-					MusicBeatState.switchState(new OptionsState());
+					LoadingState.loadAndSwitchState(new options.OptionsState());
 				case 'CREDITS':
 					MusicBeatState.switchState(new CreditsState());
 				#if desktop
