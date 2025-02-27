@@ -250,7 +250,7 @@ class ChangedMainMenuState extends MusicBeatState
 				case 'NEW LIFE':
 					MusicBeatState.switchState(new StoryMenuState());
 				case 'OLD MEMORIES':
-					MusicBeatState.switchState(new FreeplayState());
+					MusicBeatState.switchState(new ChangedFreeplayState());
 				case 'OPTIONS':
 					LoadingState.loadAndSwitchState(new options.OptionsState());
 				case 'CREDITS':
