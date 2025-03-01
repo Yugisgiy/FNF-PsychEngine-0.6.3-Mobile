@@ -137,7 +137,7 @@
 	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
 	<haxelib name="faxe" if='switch'/>
 	<!--<haxelib name="polymod"/> -->
-	<haxelib name="discord_rpc" if="DISCORD_ALLOWED"/>
+	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 	<haxelib name="extension-androidtools" if="android" />
 
