@@ -58,8 +58,8 @@ class DesktopMenu extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 		var iconI:Int = 0;
 		var iconFrames = Paths.getSparrowAtlas("menuIcons");
-		var sanstitre = new FlxBackdrop(Paths.image('sanstitre'), XY, 0, 0);
-		var rainbowscreen = new FlxBackdrop(Paths.image('rainbowpcBg'), XY, 0, 0);
+		var sanstitre = new FlxBackdrop(Paths.image('sanstitre'), X, 0, 0);
+		var rainbowscreen = new FlxBackdrop(Paths.image('rainbowpcBg'), X, 0, 0);
 		var rainbTmr = new FlxTimer().start(0.005, function(tmr:FlxTimer)
 		{
 			rainbowscreen.x += (Math.sin(time)/5)+2;
@@ -117,7 +117,6 @@ class DesktopMenu extends MusicBeatState
 								PlayState.campaignScore = 0;
 								PlayState.campaignMisses = 0;
 								CoolUtil.difficulties = ["Hard"];
-								video.playMP4(Paths.videoRon('ron'), new PlayState(), false, false, false);
 							});
 						}
 						else if (icons[i].length != 0)
@@ -258,7 +257,6 @@ class RunTab extends FlxGroup {
 			case "winver": FlxG.state.add(new Winver());
 			case "cdplayer": 	FlxG.state.add(new MusicPlayer());
 								FlxG.sound.music.volume = 0.01;
-			case "passionatedevs": ClientPrefs.rtxMode = !ClientPrefs.rtxMode;
 			default: if (runText.contains("www") || runText.contains("http") || runText.contains("com")) CoolUtil.browserLoad(runText);
 		}
 	}
