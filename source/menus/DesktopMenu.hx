@@ -7,7 +7,6 @@ import flixel.addons.ui.FlxMultiGamepadAnalogStick.XY;
 import flixel.addons.ui.FlxUIInputText;
 import flixel.addons.ui.FlxUIDropDownMenu;
 import flixel.addons.ui.FlxUIButton;
-import misc.CustomFadeTransition;
 import flixel.FlxCamera;
 import flixel.math.FlxPoint;
 import flixel.group.FlxGroup;
@@ -31,7 +30,7 @@ class DesktopMenu extends MusicBeatState
 		"discord" => "https://discord.gg/ron-874366610918473748",
 		"random" => "https://www.facebook.com",
 		"settings" => new options.OptionsState(),
-		"freeplay" => new MasterFreeplayState(),
+		"freeplay" => new FreeplayState(),
 		"story mode" => "story mode is idiot",
 		"credits" => new CreditMenu()
 	];
