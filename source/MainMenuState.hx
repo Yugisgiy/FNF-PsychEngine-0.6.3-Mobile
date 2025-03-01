@@ -1,4 +1,4 @@
-package menus;
+package;
 
 import flixel.math.FlxRandom;
 import flixel.FlxG;
@@ -14,7 +14,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
-import gameassets.Achievements;
+import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
 import flixel.addons.display.FlxBackdrop;
@@ -316,7 +316,7 @@ class MainMenuState extends MusicBeatState
 			{
 				selectedSomethin = true;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-				MusicBeatState.switchState(new menus.TitleState());
+				MusicBeatState.switchState(new TitleState());
 			}
 
 			if (controls.ACCEPT)
@@ -349,7 +349,6 @@ class MainMenuState extends MusicBeatState
 							switch (daChoice)
 							{
 								case 'story_mode':
-									StoryMenuState.musicTime = FlxG.sound.music.time;
 									MusicBeatState.switchState(new StoryMenuState());
 								case 'freeplay':
 									MusicBeatState.switchState(new FreeplayState());
