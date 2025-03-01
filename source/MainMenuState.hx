@@ -1,9 +1,6 @@
 package menus;
 
 import flixel.math.FlxRandom;
-#if desktop
-import important.Discord.DiscordClient;
-#end
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -228,6 +225,8 @@ class MainMenuState extends MusicBeatState
 		}
 		#end
 
+		addTouchPad("NONE", "E");
+
 		super.create();
 
 	}
@@ -369,8 +368,7 @@ class MainMenuState extends MusicBeatState
 					});
 				}
 			}
-			#if desktop
-			else if (FlxG.keys.anyJustPressed(debugKeys))
+			else if (touchPad.buttonE.justPressed || FlxG.keys.anyJustPressed(debugKeys))
 			{
 				selectedSomethin = true;
 				MusicBeatState.switchState(new MasterEditorMenu());
