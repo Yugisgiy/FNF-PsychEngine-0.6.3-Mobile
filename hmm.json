@@ -1,10 +1,10 @@
 {
   "dependencies": [
     {
-      "name": "discord_rpc",
+      "name": "hxdiscord_rpc",
       "type": "git",
-      "ref": "master",
-      "url": "https://github.com/MobilePorting/linc_discord-rpc-0.6.3"
+      "ref": "main",
+      "url": "https://github.com/MobilePorting/hxdiscord_rpc"
     },
     {
       "name": "linc_luajit",
