@@ -104,8 +104,6 @@ class DesktopMenu extends MusicBeatState
 							//	FlxG.camera.fade(0x88FFFFFF, 0.6, false);
 							//	new FlxTimer().start(2, function(tmr:FlxTimer){ FlxG.switchState(new StoryMenuState()); FlxG.camera.fade(0x88FFFFFF, 0, true);});
 							//});
-							var video:misc.MP4Handler = new misc.MP4Handler();
-							openSubState(new misc.CustomFadeTransition(.8, false));
 							new FlxTimer().start(.5, function(tmr:FlxTimer)
 							{
 								PlayState.storyPlaylist = ["Ron","Wasted","Ayo","Bloodshed"];
@@ -116,11 +114,9 @@ class DesktopMenu extends MusicBeatState
 
 								PlayState.storyDifficulty = 0;
 	
-								PlayState.SONG = important.Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 								PlayState.campaignScore = 0;
 								PlayState.campaignMisses = 0;
 								CoolUtil.difficulties = ["Hard"];
-								important.WeekData.reloadWeekFiles(true);
 								video.playMP4(Paths.videoRon('ron'), new PlayState(), false, false, false);
 							});
 						}
@@ -148,14 +144,6 @@ class DesktopMenu extends MusicBeatState
 		camWhat = new FlxCamera();
 		FlxG.cameras.reset(camWhat);
 		FlxG.cameras.add(camText);
-		addShader(camWhat, "chromatic aberration");
-		addShader(camWhat, "fake CRT");
-		addShader(camWhat, "8bitcolor");
-		Shaders["8bitcolor"].shader.data.enablethisbitch.value = [1.];
-		Shaders["chromatic aberration"].shader.data.rOffset.value = [chromeOffset/2];
-		Shaders["chromatic aberration"].shader.data.gOffset.value = [0.0];
-		Shaders["chromatic aberration"].shader.data.bOffset.value = [chromeOffset * -1];
-		FlxCamera.defaultCameras = [camWhat];
 		CustomFadeTransition.nextCamera = camText;
 		super.create();
 	}
@@ -179,8 +167,6 @@ class DesktopMenu extends MusicBeatState
 				FlxTween.tween(window, {y: ywindow + 10, angle: -10}, 1, {ease: FlxEase.circInOut, type: PINGPONG});
 			}
 		}*/
-		Shaders["chromatic aberration"].shader.data.rOffset.value = [chromeOffset*Math.sin(time)];
-		Shaders["chromatic aberration"].shader.data.bOffset.value = [-chromeOffset*Math.sin(time)];
 		#if desktop
 		if (FlxG.keys.anyJustPressed(debugKeys))
 			MusicBeatState.switchState(new editors.MasterEditorMenu());
