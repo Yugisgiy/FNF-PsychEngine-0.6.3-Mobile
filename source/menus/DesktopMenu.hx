@@ -42,7 +42,6 @@ class DesktopMenu extends MusicBeatState
 	var buttons:Array<FlxButton> = [];
 	var clicked:Bool = false;
 	var time:Float = 0;
-	var chromeOffset = (ClientPrefs.rgbintense/350);
 	var transitioningToIdiotism:Bool = false;
 	var window:FlxSprite;
 	var ywindow:Float = FlxG.height/2-203;
@@ -60,7 +59,7 @@ class DesktopMenu extends MusicBeatState
 		var iconI:Int = 0;
 		var iconFrames = Paths.getSparrowAtlas("menuIcons");
 		var sanstitre = new FlxBackdrop(Paths.image('sanstitre'), XY, 0, 0);
-		rainbowscreen = new FlxBackdrop(Paths.image('rainbowpcBg'), XY, 0, 0);
+		var rainbowscreen = new FlxBackdrop(Paths.image('rainbowpcBg'), XY, 0, 0);
 		var rainbTmr = new FlxTimer().start(0.005, function(tmr:FlxTimer)
 		{
 			rainbowscreen.x += (Math.sin(time)/5)+2;
