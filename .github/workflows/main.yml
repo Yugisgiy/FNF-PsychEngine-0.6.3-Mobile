@@ -8,11 +8,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: Windows
-            os: windows-2022
-            buildArgs: windows
-            artifactName: windowsBuild
-            artifactPath: export\release\windows\bin\*
           - name: Android
             os: macos-15
             buildArgs: "android -ONLY_ARMV7"
