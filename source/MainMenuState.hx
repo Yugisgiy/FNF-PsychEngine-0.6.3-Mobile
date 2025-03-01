@@ -24,7 +24,7 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var psychEngineVersion:String = '0.5.2h (ron eidition)'; //This is also used for Discord RPC
+	public static var psychEngineVersion:String = '0.6.3 (ron eidition)'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -350,17 +350,17 @@ class MainMenuState extends MusicBeatState
 							{
 								case 'story_mode':
 									StoryMenuState.musicTime = FlxG.sound.music.time;
-									MusicBeatState.switchState(new menus.StoryMenuState());
+									MusicBeatState.switchState(new StoryMenuState());
 								case 'freeplay':
-									MusicBeatState.switchState(new menus.MasterFreeplayState());
+									MusicBeatState.switchState(new FreeplayState());
 								#if MODS_ALLOWED
 								case 'mods':
-									MusicBeatState.switchState(new menus.ModsMenuState());
+									MusicBeatState.switchState(new ModsMenuState());
 								#end
 								case 'awards':
-									MusicBeatState.switchState(new menus.AchievementsMenuState());
+									MusicBeatState.switchState(new AchievementsMenuState());
 								case 'credits':
-									MusicBeatState.switchState(new menus.CreditsState());
+									MusicBeatState.switchState(new CreditsState());
 								case 'options':
 									LoadingState.loadAndSwitchState(new options.OptionsState());
 							}
