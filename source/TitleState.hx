@@ -1,4 +1,4 @@
-package menus;
+package;
 
 import flixel.addons.display.FlxBackdrop;
 import flixel.FlxG;
