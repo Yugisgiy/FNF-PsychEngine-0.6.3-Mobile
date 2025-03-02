@@ -63,7 +63,6 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
 	var time:Float = 0;
-	var chromeOffset = (ClientPrefs.rgbintense/350);
 	var curWacky:Array<String> = [];
 
 	var logoBl:FlxSprite;
@@ -113,7 +112,6 @@ class TitleState extends MusicBeatState
 		FlxG.sound.volumeUpKeys = volumeUpKeys;
 		//FlxG.keys.preventDefaultKeys = [TAB];
 
-		important.PlayerSettings.init();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
@@ -126,7 +124,6 @@ class TitleState extends MusicBeatState
 
 		ClientPrefs.loadPrefs();
 
-		important.Highscore.load();
 
 		// IGNORE THIS!!!
 		titleJSON = Json.parse(Paths.getTextFromFile('images/gfDanceTitle.json'));
@@ -169,12 +166,7 @@ class TitleState extends MusicBeatState
 			startIntro();
 		});
 		#end
-		addShader(FlxG.camera, "chromatic aberration");
-		addShader(FlxG.camera, "colorizer");
-		var chromeOffset = (ClientPrefs.rgbintense/350);
-		Shaders["chromatic aberration"].shader.data.rOffset.value = [chromeOffset/2];
-		Shaders["chromatic aberration"].shader.data.gOffset.value = [0.0];
-		Shaders["chromatic aberration"].shader.data.bOffset.value = [chromeOffset * -1];
+
 	}
 
 	function startIntro()
@@ -458,8 +450,6 @@ class TitleState extends MusicBeatState
 	function fuckyou(){
 		#if desktop
 		MusicBeatState.switchState(new menus.MainMenuState());
-		#else
-		MusicBeatState.switchState(new menus.PiracyScreen());
 		#end
 	}
 
