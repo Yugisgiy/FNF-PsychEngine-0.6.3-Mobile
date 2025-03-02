@@ -27,7 +27,7 @@ import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.sound.FlxSound;
+import flixel.system.FlxSound;
 import flixel.system.ui.FlxSoundTray;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -350,14 +350,11 @@ class TitleState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		time += elapsed;
-		Shaders["chromatic aberration"].shader.data.rOffset.value = [chromeOffset*Math.sin(time)];
-		Shaders["chromatic aberration"].shader.data.bOffset.value = [-chromeOffset*Math.sin(time)];
 		if (skippedIntro) {
 			logoBl.angle = Math.sin(-time*5)/8;
 			logoBi.angle = logoBl.angle;
 			logoBl.screenCenter(XY);
 			titleText.angle += Math.sin(-time*8)/16;
-			Shaders["colorizer"].shader.data.colors.value = time/2;
 		}
 
 		if (FlxG.sound.music != null)
