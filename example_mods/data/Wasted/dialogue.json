@@ -1,0 +1,49 @@
+[
+	{
+		"textColor": "#FFFF00",
+		"text": "why'd you have to do that man",
+		"character": "ron",
+		"retroes": "ron",
+		"alias": "coolguy11",
+		"isLeftSide": true,
+		"expression": "happy"
+	},
+	{
+		"textColor": "#FF0000",
+		"text": "what",
+		"retroes": "bf",
+		"alias": "arcade04",
+		"character": "bf",
+		"expression": "confused"
+	},
+	{
+		"textColor": "#FFFF00",
+		"text": "you kept insulting me mid-song",
+		"character": "ron",
+		"alias": "coolguy11",
+		"isLeftSide": true,
+		"expression": "happy"
+	},
+	{
+		"textColor": "#FF0000",
+		"alias": "arcade04",
+		"text": "did i",
+		"character": "bf",
+		"expression": "talk"
+	},
+	{
+		"textColor": "#FFFF00",
+		"isLeftSide": true,
+		"alias": "coolguy11",
+		"text": "yeah",
+		"character": "ron",
+		"expression": "happy"
+	},
+	{
+		"textColor": "#FF0000",
+		"alias": "arcade04",
+		"text": "how",
+		"character": "bf",
+		"expression": "talk"
+	}
+]
