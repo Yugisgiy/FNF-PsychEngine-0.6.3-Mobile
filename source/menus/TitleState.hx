@@ -573,7 +573,6 @@ class TitleState extends MusicBeatState
 			remove(ngSpr);
 			remove(credGroup);
 			FlxG.camera.flash(FlxColor.WHITE, 4);
-			addShader(FlxG.camera, "godray");
 			var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
 			if (easteregg == null) easteregg = '';
 			easteregg = easteregg.toUpperCase();
