@@ -317,7 +317,6 @@ class ClientPrefs {
 			for (control => keys in loadedControls) {
 				keyBinds.set(control, keys);
 			}
-			reloadControls();
 		}
 	}
 
@@ -326,7 +325,6 @@ class ClientPrefs {
 	}
 
 	public static function reloadControls() {
-		PlayerSettings.player1.controls.setKeyboardScheme(KeyboardScheme.Solo);
 
 		TitleState.muteKeys = copyKey(keyBinds.get('volume_mute'));
 		TitleState.volumeDownKeys = copyKey(keyBinds.get('volume_down'));
