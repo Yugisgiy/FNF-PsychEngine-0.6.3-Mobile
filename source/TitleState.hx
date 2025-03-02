@@ -1,10 +1,6 @@
 package menus;
 
 import flixel.addons.display.FlxBackdrop;
-#if desktop
-import important.Discord.DiscordClient;
-import sys.thread.Thread;
-#end
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -27,7 +23,7 @@ import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.sound.FlxSound;
+import flixel.system.FlxSound;
 import flixel.system.ui.FlxSoundTray;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -63,7 +59,6 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
 	var time:Float = 0;
-	var chromeOffset = (ClientPrefs.rgbintense/350);
 	var curWacky:Array<String> = [];
 
 	var logoBl:FlxSprite;
@@ -113,7 +108,6 @@ class TitleState extends MusicBeatState
 		FlxG.sound.volumeUpKeys = volumeUpKeys;
 		//FlxG.keys.preventDefaultKeys = [TAB];
 
-		important.PlayerSettings.init();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
@@ -126,7 +120,6 @@ class TitleState extends MusicBeatState
 
 		ClientPrefs.loadPrefs();
 
-		important.Highscore.load();
 
 		// IGNORE THIS!!!
 		titleJSON = Json.parse(Paths.getTextFromFile('images/gfDanceTitle.json'));
@@ -169,12 +162,6 @@ class TitleState extends MusicBeatState
 			startIntro();
 		});
 		#end
-		addShader(FlxG.camera, "chromatic aberration");
-		addShader(FlxG.camera, "colorizer");
-		var chromeOffset = (ClientPrefs.rgbintense/350);
-		Shaders["chromatic aberration"].shader.data.rOffset.value = [chromeOffset/2];
-		Shaders["chromatic aberration"].shader.data.gOffset.value = [0.0];
-		Shaders["chromatic aberration"].shader.data.bOffset.value = [chromeOffset * -1];
 	}
 
 	function startIntro()
@@ -358,14 +345,11 @@ class TitleState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		time += elapsed;
-		Shaders["chromatic aberration"].shader.data.rOffset.value = [chromeOffset*Math.sin(time)];
-		Shaders["chromatic aberration"].shader.data.bOffset.value = [-chromeOffset*Math.sin(time)];
 		if (skippedIntro) {
 			logoBl.angle = Math.sin(-time*5)/8;
 			logoBi.angle = logoBl.angle;
 			logoBl.screenCenter(XY);
 			titleText.angle += Math.sin(-time*8)/16;
-			Shaders["colorizer"].shader.data.colors.value = time/2;
 		}
 
 		if (FlxG.sound.music != null)
@@ -459,7 +443,7 @@ class TitleState extends MusicBeatState
 		#if desktop
 		MusicBeatState.switchState(new menus.MainMenuState());
 		#else
-		MusicBeatState.switchState(new menus.PiracyScreen());
+		MusicBeatState.switchState(new TitleState());
 		#end
 	}
 
@@ -586,7 +570,6 @@ class TitleState extends MusicBeatState
 			remove(ngSpr);
 			remove(credGroup);
 			FlxG.camera.flash(FlxColor.WHITE, 4);
-			addShader(FlxG.camera, "godray");
 			var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
 			if (easteregg == null) easteregg = '';
 			easteregg = easteregg.toUpperCase();
