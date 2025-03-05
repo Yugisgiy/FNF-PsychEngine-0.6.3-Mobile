@@ -36,25 +36,25 @@
       "name": "hxCodec",
       "type": "git",
       "ref": "main",
-      "url": "https://github.com/mcagabe19-stuff/hxCodec-0.6.3"
+      "url": "https://github.com/MobilePorting/hxCodec-0.6.3"
     },
     {
       "name": "hxcpp",
       "type": "git",
       "ref": "master",
-      "url": "https://github.com/mcagabe19-stuff/hxcpp"
+      "url": "https://github.com/MobilePorting/hxcpp"
     },
     {
       "name": "lime",
       "type": "git",
       "ref": "main",
-      "url": "https://github.com/mcagabe19-stuff/lime"
+      "url": "https://github.com/MobilePorting/lime"
     },
     {
       "name": "openfl",
       "type": "git",
       "ref": "9.1.0",
-      "url": "https://github.com/mcagabe19-stuff/openfl"
+      "url": "https://github.com/MobilePorting/openfl"
     }
   ]
 }
