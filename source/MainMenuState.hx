@@ -14,7 +14,6 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
-import Achievements;
 import editors.MasterEditorMenu;
 import flixel.addons.display.FlxBackdrop;
 
@@ -134,8 +133,6 @@ class MainMenuState extends MusicBeatState
 		Achievements.loadAchievements();
 		var leDate = Date.now();
 		if (!Achievements.achievementsUnlocked[achievementID][1] && leDate.getDay() == 5 && leDate.getHours() >= 18) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
-			Achievements.achievementsUnlocked[achievementID][1] = true;
-			giveAchievement();
 			ClientPrefs.saveSettings();
 		}
 		#end
@@ -210,7 +207,6 @@ class MainMenuState extends MusicBeatState
 	// Unlocks "Freaky on a Friday Night" achievement
 	var achievementID:Int = 0;
 	function giveAchievement() {
-		add(new AchievementObject(achievementID, camAchievement));
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 		trace('Giving achievement ' + achievementID);
 	}
@@ -324,11 +320,11 @@ class MainMenuState extends MusicBeatState
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
 									case 'extras':
-										MusicBeatState.switchState(new ExtrasMenuState());
+										MusicBeatState.switchState(new FreeplayState());
 									case 'awards':
 										MusicBeatState.switchState(new AchievementsMenuState());
 									case 'options':
-										MusicBeatState.switchState(new OptionsState());
+										MusicBeatState.switchState(new options.OptionsState());
 								}
 							});
 						}
