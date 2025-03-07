@@ -7,7 +7,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxState;
 
-class MainMenuState extends MusicBeatState
+class DeadAirMainMenuState extends MusicBeatState
 {
     var title:FlxText;
     var glitchEffect:FlxSprite;
