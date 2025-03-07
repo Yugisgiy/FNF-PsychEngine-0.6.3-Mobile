@@ -138,7 +138,6 @@ class MainMenuState extends MusicBeatState
 
 		}
 
-		super.create();
 
 		switch (FlxG.random.int(1, 6))
 		{
