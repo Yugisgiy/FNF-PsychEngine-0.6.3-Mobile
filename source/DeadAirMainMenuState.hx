@@ -1,77 +1,82 @@
 package;
 
-import flixel.FlxG;
 import flixel.FlxState;
+import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxText;
-import flixel.util.FlxColor;
-import flixel.system.input.Mouse;
 import flixel.FlxButton;
-import flixel.FlxSound;
+import flixel.text.FlxText;
+import flixel.system.FlxAssets;
+import flixel.graphics.FlxShader;
+import flixel.input.mouse.FlxMouseEvent;
+import flixel.util.FlxColor;
 
-class MainMenuState extends FlxState
-{
-    var bg:FlxSprite;
-    var title:FlxText;
-    var startButton:FlxButton;
-    var hoverSound:FlxSound;
-    var clickSound:FlxSound;
-
-    override public function create():Void
-    {
+class MainMenuState extends MusicBeatSubState {
+    
+    private var background:FlxSprite;
+    private var playButton:FlxButton;
+    private var optionsButton:FlxButton;
+    private var quitButton:FlxButton;
+    private var menuTitle:FlxText;
+    
+    private var shader:FlxShader;
+    
+    override public function create():Void {
         super.create();
+        
+        // Set the background (Make sure to use Dead Air's theme background)
+        background = new FlxSprite(0, 0);
+        background.loadGraphic("assets/images/main/ohiogaming.png", true, 1280, 720);  // Adjust size as needed
+        background.scrollFactor.set(0, 0);
+        add(background);
 
-        // Background setup (Dead Air's dark atmosphere)
-        bg = new FlxSprite(0, 0);
-        bg.loadGraphic("assets/images/deadAir_background.png", true, 1280, 720);
-        add(bg);
+        // Apply a custom shader to the background (eerie effect)
+        shader = new FlxShader();
+        shader.load("assets/shaders/dead_air_shader.frag");  // Ensure you have the shader file in the right location
+        background.setShaders([shader]);
+        
+        // Menu Title
+        menuTitle = new FlxText(FlxG.width / 2 - 100, 50, 200, "Dead Air");
+        menuTitle.setFormat(null, 32, FlxColor.WHITE, "center");
+        add(menuTitle);
 
-        // Title text setup
-        title = new FlxText(0, 50, FlxG.width, "Dead Air");
-        title.setFormat(null, 64, FlxColor.WHITE, "center");
-        add(title);
+        // Play Button
+        playButton = new FlxButton(FlxG.width / 2 - 100, FlxG.height / 2 - 50, "Play", onPlayClick);
+        playButton.setSize(200, 50);
+        add(playButton);
 
-        // Start button setup
-        startButton = new FlxButton(FlxG.width / 2 - 100, FlxG.height / 2 + 100, "Start", onStartPressed);
-        startButton.onMouseOver.add(onHoverStartButton);
-        startButton.onMouseOut.add(onHoverEndStartButton);
-        startButton.onClick.add(onClickStartButton);
-        add(startButton);
-
-        // Load sound effects
-        hoverSound = FlxG.loadSound("assets/sounds/hoverSound.mp3");
-        clickSound = FlxG.loadSound("assets/sounds/clickSound.mp3");
+        // Options Button
+        optionsButton = new FlxButton(FlxG.width / 2 - 100, FlxG.height / 2 + 10, "Options", onOptionsClick);
+        optionsButton.setSize(200, 50);
+        add(optionsButton);
+        
+        // Quit Button
+        quitButton = new FlxButton(FlxG.width / 2 - 100, FlxG.height / 2 + 70, "Quit", onQuitClick);
+        quitButton.setSize(200, 50);
+        add(quitButton);
+        
+        // Optional: Add some eerie background music
+        FlxG.sound.play("assets/music/freakyMenu", 0.5, true);  // Ensure you have the correct path
+        
     }
-
-    override public function update(elapsed:Float):Void
-    {
-        super.update(elapsed);
-
-        // You can update things here, like animating the background or menu elements if needed.
-    }
-
-    function onStartPressed():Void
-    {
-        // Transition to the gameplay state, as would be done in the original Dead Air mod
+    
+    // Button actions
+    private function onPlayClick():Void {
+        // Transition to the game state (implement this state)
         FlxG.switchState(new PlayState());
     }
 
-    function onHoverStartButton():Void
-    {
-        // Play hover sound effect when the mouse hovers over the start button
-        hoverSound.play();
-        startButton.color = FlxColor.getColor(255, 0, 0); // Change the button color on hover
+    private function onOptionsClick():Void {
+        // Transition to options menu (implement this state)
+        FlxG.switchState(new OptionsState());
     }
 
-    function onHoverEndStartButton():Void
-    {
-        // Reset the color when the mouse leaves the start button
-        startButton.color = FlxColor.getColor(255, 255, 255); // Reset to white
+    private function onQuitClick():Void {
+        // Quit the game
+        FlxG.quit();
     }
 
-    function onClickStartButton():Void
-    {
-        // Play click sound effect when the start button is clicked
-        clickSound.play();
+    override public function update(elapsed:Float):Void {
+        super.update(elapsed);
+        // Additional effects or input handling can go here
     }
 }
