@@ -20,10 +20,11 @@ import lime.app.Application;
 import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
+import flixel.FlxState
 
 using StringTools;
 
-class MainMenuState extends MusicBeatState
+class MainMenuState extends FlxState
 {
 	public static var psychEngineVersion:String = '0.6.3'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
@@ -46,6 +47,10 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
+
+	var bg:FlxSprite;
+	var title:FlxText;
+	var text:FlxText;
 
 	override function create()
 	{
@@ -159,6 +164,44 @@ class MainMenuState extends MusicBeatState
 		addTouchPad("UP_DOWN", "A_B_E");
 
 		super.create();
+
+        // Load background with an eerie Horrortale vibe
+        bg = new FlxSprite();
+        bg.loadGraphic("assets/images/horrortale_bg.png", true); // Replace with Horrortale-themed image
+        bg.screenCenter();
+        add(bg);
+
+        // Title Text: Creepy undertale/Horrortale font and color
+        title = new FlxText(0, 100, 0, "HORRORTALE", 32);
+        title.setFormat(null, 48, FlxColor.RED, "center"); // Red color to give a sense of danger
+        title.screenCenter(FlxAxes.X);
+        add(title);
+
+        // Subtext: More eerie message like "Press Enter to Begin"
+        text = new FlxText(0, 200, 0, "Press Enter to Begin", 16);
+        text.setFormat(null, 24, FlxColor.WHITE, "center");
+        text.screenCenter(FlxAxes.X);
+        add(text);
+
+        // Play eerie ambient sound
+        FlxG.sound.load("assets/music/horrortale_ambient.mp3"); // Load your eerie sound file
+        FlxG.sound.play("horrortale_ambient.mp3", 1, true); // Loop the ambient sound
+
+        // Flashing eyes in the background (to mimic the eerie feel)
+        var eyeFlare:FlxSprite = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
+        eyeFlare.makeGraphic(50, 50, FlxColor.YELLOW);
+        eyeFlare.alpha = 0.0; // Start off invisible
+        add(eyeFlare);
+
+        // Adding a flicker effect to the title
+        title.alpha = Math.sin(FlxG.elapsed * 10) * 0.3 + 0.7; // Flicker effect for title
+    }
+
+        // Flickering eyes effect: Create eye-flare that flickers like it's watching you
+        var eyeFlare = members[3]; // Get eyeFlare object
+        eyeFlare.alpha = Math.sin(FlxG.elapsed * 3) * 0.4 + 0.6; // Flicker effect for eyes
+    }
+}
 	}
 
 	#if ACHIEVEMENTS_ALLOWED
@@ -265,6 +308,15 @@ class MainMenuState extends MusicBeatState
 		}
 
 		super.update(elapsed);
+
+		        // Handle input to transition to PlayState
+        if (FlxG.keys.justPressed.ENTER) {
+            FlxG.switchState(new PlayState());  // Change to PlayState or any other custom state
+        }
+
+        // Flickering eyes effect: Create eye-flare that flickers like it's watching you
+        var eyeFlare = members[3]; // Get eyeFlare object
+        eyeFlare.alpha = Math.sin(FlxG.elapsed * 3) * 0.4 + 0.6; // Flicker effect for eyes
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
