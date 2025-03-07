@@ -1,92 +1,77 @@
 package;
 
 import flixel.FlxG;
-import flixel.FlxSprite;
-import flixel.text.FlxText;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
 import flixel.FlxState;
+import flixel.FlxSprite;
+import flixel.FlxText;
+import flixel.util.FlxColor;
+import flixel.system.input.Mouse;
+import flixel.FlxButton;
+import flixel.FlxSound;
 
-class DeadAirMainMenuState extends MusicBeatState
+class MainMenuState extends FlxState
 {
+    var bg:FlxSprite;
     var title:FlxText;
-    var glitchEffect:FlxSprite;
-    var menuItems:Array<FlxText> = [];
-    var selectedItem:Int = 0;
+    var startButton:FlxButton;
+    var hoverSound:FlxSound;
+    var clickSound:FlxSound;
 
     override public function create():Void
     {
         super.create();
 
-        // Dark and unsettling background
-        FlxG.cameras.bgColor = FlxColor.fromRGB(5, 5, 5);
+        // Background setup (Dead Air's dark atmosphere)
+        bg = new FlxSprite(0, 0);
+        bg.loadGraphic("assets/images/deadAir_background.png", true, 1280, 720);
+        add(bg);
 
-        // Main title (Dead Air aesthetic)
-        title = new FlxText(0, FlxG.height * 0.2, FlxG.width, "DEAD AIR");
-        title.setFormat("VCR OSD Mono", 70, FlxColor.WHITE, CENTER);
-        title.alpha = 0.9;
+        // Title text setup
+        title = new FlxText(0, 50, FlxG.width, "Dead Air");
+        title.setFormat(null, 64, FlxColor.WHITE, "center");
         add(title);
 
-        // Glitch effect (just a simple visual placeholder for now)
-        glitchEffect = new FlxSprite().loadGraphic(Paths.image('glitch_effect'));
-        glitchEffect.setGraphicSize(Std.int(FlxG.width * 0.8));
-        glitchEffect.screenCenter();
-        glitchEffect.alpha = 0.4;
-        add(glitchEffect);
+        // Start button setup
+        startButton = new FlxButton(FlxG.width / 2 - 100, FlxG.height / 2 + 100, "Start", onStartPressed);
+        startButton.onMouseOver.add(onHoverStartButton);
+        startButton.onMouseOut.add(onHoverEndStartButton);
+        startButton.onClick.add(onClickStartButton);
+        add(startButton);
 
-        // Menu options
-        addMenuItem("Story Mode");
-        addMenuItem("Freeplay");
-        addMenuItem("Options");
-
-        updateSelection();
-
-        // Glitchy tween effect for title
-        FlxTween.tween(title, {x: title.x + 5}, 0.1, {type: FlxTween.PINGPONG});
-        FlxTween.tween(glitchEffect, {alpha: 0.1}, 0.3, {type: FlxTween.PINGPONG});
-    }
-
-    function addMenuItem(text:String):Void
-    {
-        var item = new FlxText(0, FlxG.height * (0.4 + (menuItems.length * 0.1)), FlxG.width, text);
-        item.setFormat("VCR OSD Mono", 40, FlxColor.GRAY, CENTER);
-        item.ID = menuItems.length;
-        menuItems.push(item);
-        add(item);
+        // Load sound effects
+        hoverSound = FlxG.loadSound("assets/sounds/hoverSound.mp3");
+        clickSound = FlxG.loadSound("assets/sounds/clickSound.mp3");
     }
 
     override public function update(elapsed:Float):Void
     {
         super.update(elapsed);
 
-        if (controls.UI_UP_P)
-        {
-            selectedItem = (selectedItem - 1 + menuItems.length) % menuItems.length;
-            updateSelection();
-        }
-
-        if (controls.UI_DOWN_P)
-        {
-            selectedItem = (selectedItem + 1) % menuItems.length;
-            updateSelection();
-        }
-
-        if (controls.ACCEPT)
-        {
-            switch (selectedItem)
-            {
-                case 0: FlxG.switchState(new StoryMenuState());
-                case 1: FlxG.switchState(new FreeplayState());
-                case 2: FlxG.switchState(new options.OptionsState());
-            }
-        }
+        // You can update things here, like animating the background or menu elements if needed.
     }
 
-    function updateSelection():Void
+    function onStartPressed():Void
     {
-        for (i in 0...menuItems.length)
-        {
-            menuItems[i].color = (i == selectedItem) ? FlxColor.WHITE : FlxColor.GRAY;
-        }
+        // Transition to the gameplay state, as would be done in the original Dead Air mod
+        FlxG.switchState(new PlayState());
+    }
+
+    function onHoverStartButton():Void
+    {
+        // Play hover sound effect when the mouse hovers over the start button
+        hoverSound.play();
+        startButton.color = FlxColor.getColor(255, 0, 0); // Change the button color on hover
+    }
+
+    function onHoverEndStartButton():Void
+    {
+        // Reset the color when the mouse leaves the start button
+        startButton.color = FlxColor.getColor(255, 255, 255); // Reset to white
+    }
+
+    function onClickStartButton():Void
+    {
+        // Play click sound effect when the start button is clicked
+        clickSound.play();
     }
 }
