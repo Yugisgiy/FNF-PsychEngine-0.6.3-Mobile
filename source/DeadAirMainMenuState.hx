@@ -59,13 +59,13 @@ class DeadAirMainMenuState extends MusicBeatState
     {
         super.update(elapsed);
 
-        if (controls.UP_P)
+        if (controls.UI_UP_P)
         {
             selectedItem = (selectedItem - 1 + menuItems.length) % menuItems.length;
             updateSelection();
         }
 
-        if (controls.DOWN_P)
+        if (controls.UI_DOWN_P)
         {
             selectedItem = (selectedItem + 1) % menuItems.length;
             updateSelection();
@@ -77,7 +77,7 @@ class DeadAirMainMenuState extends MusicBeatState
             {
                 case 0: FlxG.switchState(new StoryMenuState());
                 case 1: FlxG.switchState(new FreeplayState());
-                case 2: FlxG.switchState(new OptionsState());
+                case 2: FlxG.switchState(new options.OptionsState());
             }
         }
     }
