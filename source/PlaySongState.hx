@@ -258,7 +258,6 @@ class PlaySongState extends MusicBeatState
 										case 'freeplay':
 											MusicBeatState.switchState(new FreeplayState());
 										case 'outrage' | 'enshrouded' | 'nomophobia' | 'kalampokiphobia' | 'phonophobia': // add ur songs here lmao like (remove the : at the end of phonophobia) and add ur song like " | 'YOUR SONG': "
-											var poop:String = Highscore.formatSongPoop(daChoice, 2);
 	
 											trace("Loading " + daChoice + "... is it the right song, right?");
 								
