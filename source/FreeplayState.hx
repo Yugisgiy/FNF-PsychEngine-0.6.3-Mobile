@@ -223,11 +223,11 @@ class FreeplayState extends MusicBeatState
 		var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
 		textBG.alpha = 0.6;
 		add(textBG);
-		#if (PRELOAD_ALL && android)
+		#if PRELOAD_ALL
 	    	var leText:String = "Press X to listen to the Song / Press C to open the Gameplay Changers Menu / Press Y to Reset your Score and Accuracy.";
-		#elseif (PRELOAD_ALL)
+		#else
 	    	var leText:String = "Press SPACE to listen to the Song / Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.";
-		#elseif android
+		#else
 	    	var leText:String = "Press C to open the Gameplay Changers Menu / Press Y to Reset your Score and Accuracy."
  		#else 
 	    	var leText:String = "Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.";
@@ -237,9 +237,7 @@ class FreeplayState extends MusicBeatState
 		text.scrollFactor.set();
 		add(text);
 		
-		#if android
-		addVirtualPad(FULL, A_B_C_X_Y);
-		#end
+		addTouchPad("LEFT_FULL", "A_B_C_X_Y_Z");
 
 		FlxTween.tween(scoreBG,{y: 25},0.5,{ease: FlxEase.expoInOut});
 		FlxTween.tween(scoreText,{y: 20},0.5,{ease: FlxEase.expoInOut});
@@ -356,8 +354,8 @@ class FreeplayState extends MusicBeatState
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
 		var accepted = controls.ACCEPT;
-		var space = FlxG.keys.justPressed.SPACE #if android || _virtualpad.buttonX.justPressed #end;
-		var ctrl = FlxG.keys.justPressed.CONTROL #if android || _virtualpad.buttonC.justPressed #end;
+		var space = touchPad.buttonX.justPressed || FlxG.keys.justPressed.SPACE;
+		var ctrl = touchPad.buttonC.justPressed || FlxG.keys.justPressed.CONTROL;
 
 		if (upP && allowinputShit)
 		{
