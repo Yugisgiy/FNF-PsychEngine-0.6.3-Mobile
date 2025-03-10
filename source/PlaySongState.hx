@@ -261,7 +261,6 @@ class PlaySongState extends MusicBeatState
 	
 											trace("Loading " + daChoice + "... is it the right song, right?");
 								
-											PlayState.SONG = Song.loadFromJson(poop, daChoice);
 											PlayState.isStoryMode = true;
 											PlayState.chartingMode = false;
 											PlayState.storyDifficulty = 2;
