@@ -1,10 +1,6 @@
 package;
 
 import openfl.display.BlendMode;
-#if desktop
-import Discord.DiscordClient;
-import sys.thread.Thread;
-#end
 #if MOBILE
 import flixel.input.touch.FlxTouch;
 #end
@@ -467,7 +463,7 @@ class TitleState extends MusicBeatState
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
-					MusicBeatState.switchState(new MainMenuStateAmmar());
+					MusicBeatState.switchState(new MainMenuState());
 					
 					closedState = true;
 				});
