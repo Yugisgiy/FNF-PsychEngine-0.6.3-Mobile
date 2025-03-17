@@ -136,11 +136,14 @@ class TitleState extends MusicBeatState
 			MusicBeatState.switchState(new FlashingState());
 			
 		} else {
+			#if desktop
+			if (!DiscordClient.isInitialized)
 			{
+				DiscordClient.initialize();
 				Application.current.onExit.add (function (exitCode) {
+					DiscordClient.shutdown();
 				});
 			}
-		}
 			#end
 
 			if (initialized)
