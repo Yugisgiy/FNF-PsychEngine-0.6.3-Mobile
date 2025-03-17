@@ -55,6 +55,12 @@
       "type": "git",
       "ref": "9.1.0",
       "url": "https://github.com/MobilePorting/openfl"
+    },
+    {
+      "name": "hxvlc",
+      "type": "git",
+      "ref": "main",
+      "url": "https://github.com/MobilePorting/hxvlc"
     }
   ]
 }
