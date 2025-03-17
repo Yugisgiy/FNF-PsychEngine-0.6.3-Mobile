@@ -140,6 +140,7 @@ class TitleState extends MusicBeatState
 				Application.current.onExit.add (function (exitCode) {
 				});
 			}
+		}
 			#end
 
 			if (initialized)
