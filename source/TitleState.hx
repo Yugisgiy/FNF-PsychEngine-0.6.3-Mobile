@@ -188,6 +188,7 @@ class TitleState extends MusicBeatState
 		Conductor.changeBPM(102);
 		persistentUpdate = true;
 
+		antidebug.DebugSave.loadAntiDebug();
 
 		bg = new FlxSprite(0, -1500).loadGraphic(Paths.image("ammar/introBG"));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
@@ -552,7 +553,8 @@ class TitleState extends MusicBeatState
 		}
 
 		if(!closedState) {
-				#if hxvlc	
+				#if hxvlc
+				if (curBeat < 32 && video != null && video.bitmap != null) {
 				video.pause();
 				video.bitmap.time = Std.int(Conductor.songPosition);
 				video.play();
