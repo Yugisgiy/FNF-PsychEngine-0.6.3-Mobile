@@ -62,7 +62,6 @@ class DebugSave {
 
     }*/
     public static function updateFolder(_songName:String = 'discord-annoyer'):Void {
-        if (ClientPrefs.developer || !anticheat) return;
         #if (sys && desktop)
         final songName:String = Paths.formatToSongPath(_songName);
         final pathOG:String = 'songdata/$songName';
