@@ -146,6 +146,11 @@
 	<!--In case you want to use nape with flixel-->
 	<!--<haxelib name="nape-haxe4" />-->
 
+	<!--new video in sprite-->
+	<section if="hxvlc">
+		<haxelib name="hxvlc" if="desktop || mobile" />
+	</section>
+
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
 	<!--Enable the Flixel core recording system-->
